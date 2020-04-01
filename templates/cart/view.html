@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block body %}
+<h3>cart</h3>
+<div class="w-75 order-md-2 mb-4 mt-5">
+  <h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="text-muted">Your cart</span>
+  </h4>
+  <ul class="list-group mb-3">
+  {% for pizzas in pizza%}
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div class="text-left">
+      <h6 class="my-0">{{pizzas.pizzas.name}}</h6>
+      <small class="text-muted">Pizza</small>
+      </div>
+      <span class="text-muted">{{pizzas.pizzas.price}} </span>
+    </li>
+  {% endfor %}
+  {% for subs in sub%}
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div class="text-left">
+        <h6 class="my-0">{{subs.Subs.name}}</h6>
+        <small class="text-muted">Subs</small>
+      </div>
+      <span class="text-muted">{{subs.Subs.price}} </span>
+    </li>
+  {% endfor %}
+  {% for toppings in topping%}
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div class="text-left">
+        <h6 class="my-0">{{topping.Toppings.name}}</h6>
+        <small class="text-muted">Topping</small>
+      </div>
+      <span class="text-muted">{{topping.Toppings.price}} </span>
+    </li>
+  {% endfor %}
+  {% for pastas in pasta%}
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div class="text-left">
+        <h6 class="my-0">{{pastas.Pastas.name}}</h6>
+        <small class="text-muted">Pasta</small>
+      </div>
+      <span class="text-muted">{{pastas.Pastas.price}} </span>
+    </li>
+  {% endfor %}
+  {% for salads in salad%}
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div class="text-left">
+        <h6 class="my-0">{{salads.Salads.name}}</h6>
+        <small class="text-muted">Salad</small>
+      </div>
+      <span class="text-muted">{{salads.Salads.price}} </span>
+    </li>
+  {% endfor %}
+  {% for dinners in dinner%}
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+      <div class="text-left">
+        <h6 class="my-0">{{dinners.DinnerPlatters.name}}</h6>
+        <small class="text-muted">Dinner Platters</small>
+      </div>
+      <span class="text-muted">{{dinners.DinnerPlatters.price}}  </span>
+    </li>
+  {% endfor %}
+  <li class="list-group-item d-flex justify-content-between">
+      <span>Total (USD)</span>
+      <strong>{{cart.price}}</strong>
+    </li>
+  </ul>
+  <div class="card">
+      <form action="{% url 'cart' %}" method="post">
+        {% csrf_token %}
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_jp5JvnlGk4kVHHEEfeeSDzCm007wAoW2lj"
+        data-description="A Django Charge"
+        data-amount="{{price_cent}}"
+        data-locale="auto">
+      </script>
+    </form>
+  </div>
+</div>
+{% endblock%}

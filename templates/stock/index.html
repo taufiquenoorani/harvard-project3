@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block body %}
+  {% for type in pizza_type%}
+  <div id="{{type.id}}">
+  <h4 class="text-left mb-3">{{type.name}}</h4>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Toppings</th>
+        <th scope="col">Sizes</th>
+        <th scope="col">Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    {% for pizzas in pizza%}
+      {% if pizzas.PizzaTypes.id is type.id%}
+      <tbody>
+        <tr>
+          <td>{{pizzas.name}}</td>
+          <td>{{pizzas.Toppings}}</td>
+          <td>{{pizzas.Sizes}}</td>
+          <td>{{pizzas.price}}</td>
+          <td><button onclick="addToCart('{{pizzas.id}}','Pizza')" type="button" class="btn btn-success btn-sm">+ Add</button></td>
+        </tr>
+      </tbody>
+      {% endif %}
+    {% endfor %}
+  </table>
+</div>
+{% endfor %}
+<div id ="Toppings">
+  <h4 class="text-left mb-3">Toppings</h4>
+  <table class="table">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th></th>
+        </tr>
+    </thead>
+      {% for toppings in topping%}
+      <tbody>
+        <tr>
+        <td>{{toppings.name}}</td>
+        <td>{{toppings.price}}</td>
+        <td><button onclick="addToCart('{{toppings.id}}','Toppings')" type="button" class="btn btn-success btn-sm">+ Add</button></td>
+        </tr>
+      </tbody>
+      {% endfor %}
+  </table>
+</div>
+<div id="Subs">
+  <h4 class="text-left mb-3">Subs</h4>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Size</th>
+      <th scope="col">Price</th>
+      <th></th>
+      </tr>
+    </thead>
+    {% for subs in sub%}
+    <tbody>
+      <tr>
+      <td>{{subs.name}}</td>
+      <td>{{subs.Sizes}}</td>
+      <td>{{subs.price}}</td>
+      <td><button onclick="addToCart('{{subs.id}}','Subs')" type="button" class="btn btn-success btn-sm">+ Add</button></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+<div id ="Pasta">
+  <h4 class="text-left mb-3">Pasta</h4>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th></th>
+      </tr>
+    </thead>
+    {% for pastas in pasta%}
+    <tbody>
+      <tr>
+      <td>{{pastas.name}}</td>
+      <td>{{pastas.price}}</td>
+      <td><button onclick="addToCart('{{pastas.id}}','Pasta')" type="button" class="btn btn-success btn-sm">+ Add</button></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+<div id="Salads">
+  <h4 class="text-left mb-3">Salads</h4>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th></th>
+      </tr>
+    </thead>
+    {% for salads in salad%}
+    <tbody>
+      <tr>
+      <td>{{salads.name}}</td>
+      <td>{{salads.price}}</td>
+      <td><button onclick="addToCart('{{salads.id}}','Salads')" type="button" class="btn btn-success btn-sm">+ Add</button></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+<div id="Dinner">
+  <h4 class="text-left mb-3">Dinner Platters</h4>
+  <table class="table">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Size</th>
+        <th scope="col">Price</th>
+        <th></th>
+        </tr>
+    </thead>
+    {% for dinners in dinner%}
+    <tbody>
+      <tr>
+      <td>{{dinners.name}}</td>
+      <td>{{dinners.Sizes}}</td>
+      <td>{{dinners.price}}</td>
+      <td><button onclick="addToCart('{{dinners.id}}','Dinner')" type="button" class="btn btn-success btn-sm">+ Add</button></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+{% endblock%}

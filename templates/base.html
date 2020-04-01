@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  {% block cssfile %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet"/>
+  {% endblock cssfile %}
+  {% block title%}
+  {% endblock%}
+</head>
+    <body>
+      <script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+      <header class="bg-light">
+          <div class="container">
+              <nav class="navbar navbar-expand-lg navbar-light pl-0 pr-0">
+                  <a class="navbar-brand" href="#">pizza</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                      </li>
+                      {% for type in pizza_type%}
+                      <li class="nav-item">
+                        <a class="nav-link" href="#{{type.id}}">{{type.name}} Pizza</a>
+                      </li>
+                      {% endfor %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="/#Toppings">Toppings</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/#Subs"> Subs</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/#Pasta">Pasta</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/#Salads">Salads</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/#Dinner">Dinner Platters</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-success" href="/order/cartitem">Cart</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-success" href="/order/orderlist">All Orders</a>
+                      </li>
+                    </ul>
+                    <a href="/logout" class="navbar-text text-primary">
+                        Logout
+                    </a>
+                </div>
+              </nav>
+          </div>
+      </header>
+    <div class="container pt-4">
+        {% block body %}
+        {% endblock%}
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="{% static 'js/order.js'%}"></script>
+    <div id="hello" title="Added to cart">Your item has been added to cart</div>
+  </body>
+</html>
